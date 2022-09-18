@@ -1,0 +1,9 @@
+default: -p prd -p html_report
+
+#config de report
+html_report: --format pretty --format html --out reports/cucumber_report.html
+
+
+#Ambientes para execução
+prd: ENVIROMENT="prd"
+local: ENVIROMENT="local"
