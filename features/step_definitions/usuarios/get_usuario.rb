@@ -23,11 +23,11 @@
     response_json = JSON.parse(@response.body)
     aggregate_failures do
       expect(@response.status).to eq(200)
-      expect(response_json['nome']).not_to be nil
-      expect(response_json['email']).not_to be nil
-      expect(response_json['password']).not_to be nil
-      expect(response_json['administrador']).not_to be nil
-      expect(response_json['_id']).not_to be nil
+      expect(response_json['nome']).to be nil
+      expect(response_json['email']).to be nil
+      expect(response_json['password']).to be nil
+      expect(response_json['administrador']).to be nil
+      expect(response_json['_id']).to be nil
     end
     # {
     #  "nome": "Fulano da Silva",
@@ -37,16 +37,19 @@
     #  "_id": "0uxuPY0cbmQhpEz1"
     # }
   end
-  
 
-  Então('validar que nao foram retornados usuários') do
+  Então('validar que nao foi retornado o usuario') do
     response_json = JSON.parse(@response.body)
     aggregate_failures do
       expect(@response.status).to eq(400)
       expect(response_json['message']).to eq('Usuário não encontrado')
     end
-    #{
-   #"message": "Usuário não encontrado"
-   # }
-    
   end
+  
+
+
+
+
+
+
+  

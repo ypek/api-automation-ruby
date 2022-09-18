@@ -17,10 +17,10 @@ Cenário: Realizar GET na rota /usuarios/{_id} com id valido
     Então validar que foi retornado o usuario 
 
 @get_usuarios400
-Cenário: Realizar GET na rota /usuarios/{_id} com id inexistente
-    Dado possuir um id de usuario "usuario_inexistente"
+Cenário: Realizar GET na rota /usuarios/{_id} com id invalido
+    Dado possuir um id de usuario "usuario_invalido"
     Quando realizar uma chamada GET para "/usuarios" 
-    Então validar que nao foram retornados usuários
+    Então validar que foi retornado o usuario
 
 
 

@@ -10,5 +10,10 @@ module Factory
                 "administrador": "true",
             }
         end
+        
+        def self.invalid_user
+            @id = "invalido"
+          
+        end
     end
 end 
