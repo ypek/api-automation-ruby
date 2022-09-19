@@ -6,12 +6,12 @@ Dado('possuir um playload de novo usuario para cadastrar') do
   
   
   Então('validar que foi criado um novo usuario') do
-    response_json = JSON.parse(@response.body)
+    @response_json = JSON.parse(@response.body)
     aggregate_failures do
         expect(@response.status).to eq(201)
-        expect(response_json['message']).not_to be nil
-        expect(response_json['_id']).not_to be nil
-        expect(response_json['message']).to eq('Cadastro realizado com sucesso')
+        expect(@response_json['message']).not_to be nil
+        expect(@response_json['_id']).not_to be nil
+        expect(@response_json['message']).to eq('Cadastro realizado com sucesso')
     end
   end
 
@@ -35,29 +35,13 @@ Dado('possuir um playload de novo usuario para cadastrar') do
     end
   end
 
-  Dado("cadastar um novo usuario corretamente") do
-=begin
-    @payload = {
-        
-        "nome": Faker::Name.name,
-        "email": Faker::Internet.email,
-        "password": "teste",
-        "administrador": "true",
+  Dado("possuir um novo usuario cadastrado") do
 
-    }
-    @response = @serverest_api.post('/usuarios', @payload)
-    response_json = JSON.parse(@response.body)
-    aggregate_failures do
-        expect(@response.status).to eq(201)
-        expect(response_json['message']).not_to be nil
-        expect(response_json['_id']).not_to be nil
-        expect(response_json['message']).to eq('Cadastro realizado com sucesso')
-    end
-=end
     steps %{
       Dado possuir um playload de novo usuario para cadastrar
       Quando realizar uma chamada POST para "/usuarios" 
       Então validar que foi criado um novo usuario
     }
+    @id = @response_json['_id']
     
   end

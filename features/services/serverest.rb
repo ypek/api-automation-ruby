@@ -20,5 +20,10 @@ class ServeRest
         )
     end
 
+    def delete(endpoint)
+        Excon.delete(base_uri + endpoint,
+            headers: @headers
+        )
+    end
    
 end
