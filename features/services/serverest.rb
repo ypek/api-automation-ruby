@@ -10,6 +10,7 @@ class ServeRest
     def get(endpoint)
         Excon.get(base_uri + endpoint,
             headers: @headers
+            
         )
     end
     
@@ -24,6 +25,18 @@ class ServeRest
         Excon.delete(base_uri + endpoint,
             headers: @headers
         )
+    end
+
+    def put(endpoint, payload)
+        Excon.put(base_uri + endpoint,
+            headers: @headers,
+            body: payload.to_json
+        )
+    end
+    
+    def set_access_token(payload)
+        @headers['Authorization'] = JSON.parse(post('/login', payload).body)['authorization']
+
     end
    
 end

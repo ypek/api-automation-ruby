@@ -1,8 +1,5 @@
-Quando('realizar uma chamada GET para {string}') do |path|
-    endpoint = "#{endpoint}/#{@id}" unless @id.nil?
-    @response = @serverest_api.get(path)
+
+  Quando('realizar uma chamada POST para a rota {string}') do |string|
+    @response = @serverest_api.post(string, @payload)
   end
 
-Quando('realizar uma chamada POST para {string}') do |endpoint|
-@response = @serverest_api.post(endpoint, @payload)
-end

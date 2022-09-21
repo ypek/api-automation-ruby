@@ -20,7 +20,7 @@ Cenário: Realizar GET na rota /usuarios/{_id} com id valido
 Cenário: Realizar GET na rota /usuarios/{_id} com id invalido
     Dado possuir um id de usuario "usuario_invalido"
     Quando realizar uma chamada GET para "/usuarios" 
-    Então validar que foi retornado o usuario
+    Então validar que nao foi retornado o usuario
 
 
 

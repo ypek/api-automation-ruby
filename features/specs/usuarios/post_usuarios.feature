@@ -13,9 +13,9 @@ Cenário: [POST] Cadastrar usuario com sucesso pela rota /usuarios
     
 @post_user400
 Cenário: [POST] Tentar casdastrar usuario com email já existente pela rota /usuarios
-    #Dado possuir um playload de um usuario ja cadastrado
-    Dado possuir um novo usuario cadastrado
-    Quando realizar uma chamada POST para "/usuarios" 
+    Dado possuir um token de acesso setado nas chamadas da api
+    E possuir um novo usuario cadastrado
+    Quando realizar uma chamada POST para a rota "/usuarios" 
     Então validar que foi nao pfoi possivel criar um novo usuario
 
 

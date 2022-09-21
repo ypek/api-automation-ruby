@@ -7,6 +7,8 @@ module Factory
         def self.static_data(data)
             Static.load_file[data]
         end
+        
+        
 
     end
 end

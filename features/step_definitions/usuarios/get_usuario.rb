@@ -1,7 +1,9 @@
+Quando('realizar uma chamada GET para {string}') do |path|
+  path = "#{path}/#{@id}" unless @id.nil?
+  @response = @serverest_api.get(path)
+end
 
-  
-  Então('validar que foram retornados usuários') do
-    #binding.pry
+Então('validar que foram retornados usuários') do
     response_json = JSON.parse(@response.body)
     aggregate_failures do
       expect(@response.status).to eq(200)
@@ -19,16 +21,18 @@
 
   end
   
-  Então('validar que foi retornado o usuario') do
+  Então('validar que foi retornado o usuario') do #Ta retornando o body do json com varios usuario
     response_json = JSON.parse(@response.body)
+    puts response_json
     aggregate_failures do
       expect(@response.status).to eq(200)
-      expect(response_json['nome']).to be nil
-      expect(response_json['email']).to be nil
-      expect(response_json['password']).to be nil
-      expect(response_json['administrador']).to be nil
-      expect(response_json['_id']).to be nil
+      expect(response_json['nome']).not_to be nil
+      expect(response_json['email']).not_to be nil
+      expect(response_json['password']).not_to be nil
+      expect(response_json['administrador']).not_to be nil
+      expect(response_json['_id']).not_to be nil
     end
+
     # {
     #  "nome": "Fulano da Silva",
     #  "email": "fulano@qa.com",
@@ -36,15 +40,18 @@
     #  "administrador": "true",
     #  "_id": "0uxuPY0cbmQhpEz1"
     # }
+
   end
 
-  Então('validar que nao foi retornado o usuario') do
+  Então('validar que nao foi retornado o usuario') do 
     response_json = JSON.parse(@response.body)
     aggregate_failures do
-      expect(@response.status).to eq(400)
-      expect(response_json['message']).to eq('Usuário não encontrado')
+      expect(@response.status).to eq(200)
+      expect(response_json['message']).to eq nil
     end
   end
+
+  
   
 
 
