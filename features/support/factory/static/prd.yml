@@ -1,9 +1,9 @@
-usuario_inexistente: 'EsseIdNaoExiste'
-usuario_valido: '1f33pNBt7UAYbmeA' #cuidar para nao deletar um id valido
+usuario_invalido: 'EsseIdNaoExiste'
+usuario_valido: '4GCnson8Nlr12DPz' #cuidar para nao deletar um id valido
 
 usuario_admin:
-  email: brent.gaylord@gmail.com
-  password: teste
+  email: admin@email.com.br
+  password: admin
 
 usuario_nao_admin:
   email: naoadm@qa.com.br

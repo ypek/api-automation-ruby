@@ -12,9 +12,9 @@ module Factory
             return payload if user_type.nil?
             
             if user_type == 'usuario_admin'
-                payload['administrador'] = 'true'
+                payload[:administrador] = 'true'
             elsif user_type == 'usuario_nao_admin'
-                payload['administrador'] = 'false'
+                payload[:administrador] = 'false'
             end
             payload
         end

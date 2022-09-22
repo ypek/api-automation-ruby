@@ -1,19 +1,10 @@
 Quando('realizar uma chamada GET para {string}') do |path|
   path = "#{path}/#{@id}" unless @id.nil?
   @response = @serverest_api.get(path)
+  log Utils.log_response('GET', path, @response.body)
 end
 
-Então('validar que foram retornados usuários') do
-    response_json = JSON.parse(@response.body)
-    aggregate_failures do
-      expect(@response.status).to eq(200)
-      expect(response_json['quantidade']).to be > 0
-      expect(response_json['usuarios'].size).to be > 1
-      expect(response_json['usuarios'].class).to be_kind_of(Array.class)
-      expect(response_json['quantidade'].class).to be_kind_of(Integer.class)
-    end
-    
-  end
+
 
 
   Dado("possuir um id de usuario {string}") do |user_type|
@@ -21,16 +12,17 @@ Então('validar que foram retornados usuários') do
 
   end
   
-  Então('validar que foi retornado o usuario') do #Ta retornando o body do json com varios usuario
+  Então('validar que foi retornado o status code {int} e o schema {string}') do |status_code, schema_name| #Ta retornando o body do json com varios usuario
     response_json = JSON.parse(@response.body)
-    puts response_json
+    schema = Utils.get_schema(schema_name)
     aggregate_failures do
-      expect(@response.status).to eq(200)
-      expect(response_json['nome']).not_to be nil
-      expect(response_json['email']).not_to be nil
-      expect(response_json['password']).not_to be nil
-      expect(response_json['administrador']).not_to be nil
-      expect(response_json['_id']).not_to be nil
+      expect(@response.status).to eql status_code
+      expect(JSON::Validator.validate!(schema, response_json)).to be true
+      #expect(@response.status).to eq(200)
+      #expect(response_json['nome']).not_to be nil
+      #expect(response_json['email']).not_to be nil
+      #expect(response_json['password']).not_to be nil
+      #expect(response_json['_id']).not_to be nil
     end
 
     # {
@@ -43,13 +35,7 @@ Então('validar que foram retornados usuários') do
 
   end
 
-  Então('validar que nao foi retornado o usuario') do 
-    response_json = JSON.parse(@response.body)
-    aggregate_failures do
-      expect(@response.status).to eq(200)
-      expect(response_json['message']).to eq nil
-    end
-  end
+
 
   
   

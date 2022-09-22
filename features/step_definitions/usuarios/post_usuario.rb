@@ -43,8 +43,8 @@ Dado('possuir um playload de novo usuario para cadastrar') do
     steps %{
       Dado possuir um pdo realizar uma chamada POST para "/usuarios" 
       Então validar que foi criado um novo usuario
-    }layload de novo usuario para cadastrar
-      Quan
+    }
+
     @id = @response_json['_id']
     
   end

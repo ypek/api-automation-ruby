@@ -11,6 +11,7 @@ Dado ('possuir um token de acesso setado para um usuario do tipo {string}') do |
     @serverest_api.set_access_token(payload)
     #payload = Factory::Static.static_data(user_type)
     #@serverest_api.set_access_token(payload)
+    #log response
 end
 
 Dado('possuir um playload de novo usuario do tipo {string} para cadastrar') do |user_type|
@@ -46,6 +47,8 @@ Dado('possuir um produto cadastrado') do
             Quando realizar uma chamada POST para "/produtos" 
             Então validar que um novo produto foi cadastrado com sucesso
     }
+    #log response
+
   end
   
   Dado('possuir um payload com um nome de produto já cadastrado') do
@@ -62,6 +65,25 @@ Dado('possuir um produto cadastrado') do
     end
 
   end
+
+  Então('validar que foi solocitado um token de acesso para cadastrar um novo produto') do
+
+    response_json = JSON.parse(@response.body) # 1 - transformar o body do objeto de response do excon em json
+    aggregate_failures do
+      expect(@response.status).to eql 401     # 2 - validar o status code da response
+      expect(response_json['message']).to eq 'Token de acesso ausente, inválido, expirado ou usuário do token não existe mais'   # 3 - validar que a mensagem de sucesso foi retornada
+    end
+
+  end
+  Então("validar que usuario nao administrador nao pode cadastrar um novo produto") do
+    response_json = JSON.parse(@response.body) # 1 - transformar o body do objeto de response do excon em json
+    aggregate_failures do
+      expect(@response.status).to eql 403     # 2 - validar o status code da response
+      expect(response_json['message']).to eq 'Rota exclusiva para administradores'   # 3 - validar que a mensagem de sucesso foi retornada
+    end
+  end
+
+
 
 
 
