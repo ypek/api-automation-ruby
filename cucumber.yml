@@ -1,4 +1,5 @@
 default: -p prd -p html_report
+default_local: -p local -p html 
 
 #config de report
 html_report: --format pretty --format html --out reports/cucumber_report.html

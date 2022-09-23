@@ -1,4 +1,5 @@
 # language: pt
+@regression
 @get_users
 Funcionalidade: Post usuários
     Como uma aplicação xpto

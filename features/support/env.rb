@@ -15,3 +15,5 @@ CONFIG = YAML.load_file(File.join(Dir.pwd, "features/support/config/#{ENVIROMENT
 
 
 $base_uri = CONFIG['uri']
+
+Excon.defaults[:ssl_verify_peer] = false

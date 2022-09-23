@@ -1,4 +1,5 @@
 # language: pt
+@regression
 @put_users
 Funcionalidade: Put usuarios
     Como uma aplicação xpto
