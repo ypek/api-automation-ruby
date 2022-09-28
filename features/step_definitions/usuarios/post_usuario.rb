@@ -1,9 +1,7 @@
-Dado('possuir um playload de novo usuario para cadastrar') do
+Dado('possuir um payload de novo usuario para cadastrar') do
     @payload = Factory::Dynamic.new_valid_user
   end
   
-  
-
   Dado('possuir um payload de novo usuario para cadastrar') do
     @payload = Factory::Dynamic.new_valid_user
   end

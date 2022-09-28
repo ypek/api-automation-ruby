@@ -1,5 +1,5 @@
 usuario_invalido: 'EsseIdNaoExiste'
-usuario_valido: '0uxuPY0cbmQhpEz1' #cuidar para nao deletar um id valido
+usuario_valido: '1K6Bg6DjqfYKzjoj' #cuidar para nao deletar um id valido
 
 usuario_admin:
   email: admin@email.com.br
@@ -8,3 +8,5 @@ usuario_admin:
 usuario_nao_admin:
   email: naoadm@qa.com.br
   password: teste
+
+idProduto: 'BeeJh5lz3k6kSIzA' #cuidar pra nao ser removido

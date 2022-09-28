@@ -41,6 +41,19 @@ Dado('possuir um produto cadastrado') do
     @payload['nome'] = 'Produto de teste'
 
   end
+
+  Dado('possuir um payload de produto inválido com seu valor real positivo ou negativo') do
+    @payload = Factory::Dynamic.new_valid_product
+    @payload['preco'] = 12.12
+  end
+
+  Então('validar quer foi possivel cadastrar um novo produto com valor real positivo ou negativo') do
+    response_json = JSON.parse(@response.body)
+    aggregate_failures do
+      expect(@response.status).to eql 201
+      expect(response_json['preco']).to eql 'Cadastro realizado com sucesso'
+    end
+  end
   
 
 

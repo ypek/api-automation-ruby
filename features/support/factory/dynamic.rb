@@ -1,5 +1,3 @@
-
-
 module Factory
     class Dynamic
         def self.new_valid_user(user_type = nil)
@@ -22,7 +20,6 @@ module Factory
         
         def self.invalid_user
             @id = "invalido"
-          
         end
         
         def self.new_valid_product

@@ -1,5 +1,5 @@
 class ServeRest
-    include Excon # biblioteca para fazer requisições HTTP
+    include Excon 
     attr_accessor :base_uri
 
     def initialize
@@ -37,6 +37,11 @@ class ServeRest
     def set_access_token(payload)
         @headers['Authorization'] = JSON.parse(post('/login', payload).body)['authorization']
 
+    end
+
+    def get_valid_product_id
+        response = get('/produtos')
+        JSON.parse(response.body).sample['_id']
     end
    
 end

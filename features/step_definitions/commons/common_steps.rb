@@ -6,7 +6,7 @@ end
 
   Quando('realizar uma chamada POST para {string}') do |endpoint|
     @response = @serverest_api.post(endpoint, @payload)
-    log Utils.log_response('GET', endpoint, @response.body)
+    log Utils.log_response('POST', endpoint, @response.body)
   end
 
   Então('validar que foi retornado o status code {int} e o schema {string}') do |status_code, schema_name| 
@@ -48,7 +48,6 @@ end
 
   Dado('possuir um token de acesso setado nas chamadas da api') do
     @serverest_api.set_access_token
-
   end
 
   

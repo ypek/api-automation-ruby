@@ -37,6 +37,13 @@ Cenário: Tentar cadastrar um produto sem ser admministrador
     #Então validar que usuario nao administrador nao pode cadastrar um novo produto
     Então validar que foi retornado o status code 403 e a mensagem "Rota exclusiva para administradores"
 
+@post_produtos404
+Cenário: Tentar cadastrar um produto com valor real positivo ou negativo
+    Dado possuir um token de acesso setado para um usuario do tipo "usuario_admin"
+    E possuir um payload de produto inválido com seu valor real positivo ou negativo
+    Quando realizar uma chamada POST para "/produtos" 
+    #Então validar que foi possivel cadastrar um novo produto com valor real positivo ou negativo
+    Então validar quer foi possivel cadastrar um novo produto com valor real positivo ou negativo
     
 
 
